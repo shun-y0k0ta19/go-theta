@@ -25,14 +25,29 @@ type Options struct {
 	ClientVersion          *int      `json:"clientVersion,omitempty"`
 }
 
-// Bracket represents an bracket parameters.
+func (o Options) String() string {
+	return Stringify(o)
+}
+
+// Bracket represents an bracket number and parameters.
 type Bracket struct {
-	BracketNumber     int `json:"_bracketNumber,omitempty"`
-	BracketParameters struct {
-		ShutterSpeed     float64 `json:"shutterSpeed,omitempty"`
-		ISO              int     `json:"iso,omitempty"`
-		ColorTemperature int     `json:"_colorTemperature,omitempty"`
-	} `json:"_bracketParameters,omitempty"`
+	BracketNumber     *int               `json:"_bracketNumber,omitempty"`
+	BracketParameters *BracketParameters `json:"_bracketParameters,omitempty"`
+}
+
+func (b Bracket) String() string {
+	return Stringify(b)
+}
+
+// BracketParameters represents an bracket parameters.
+type BracketParameters struct {
+	ShutterSpeed     *float64 `json:"shutterSpeed,omitempty"`
+	ISO              *int     `json:"iso,omitempty"`
+	ColorTemperature *int     `json:"_colorTemperature,omitempty"`
+}
+
+func (b BracketParameters) String() string {
+	return Stringify(b)
 }
 
 // SetOptions sets options to the Theta.

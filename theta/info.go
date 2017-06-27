@@ -16,20 +16,31 @@ import (
 
 // Info represents a Theta information.
 type Info struct {
-	Manufacturer     string   `json:"manufacturer"`
-	Model            string   `json:"model"`
-	SerialNumber     string   `json:"serialNumber"`
-	FirmwareVerision string   `json:"firmwareVersion"`
-	SupportURL       string   `json:"supportUrl"`
-	GPS              bool     `json:"gps"`
-	Gyro             bool     `json:"gyro"`
-	Uptime           int      `json:"uptime"`
-	API              []string `json:"api"`
-	Endpoints        struct {
-		HTTPPort        int   `json:"httpPort"`
-		HTTPUpdatesPort int   `json:"httpUpdatesPort"`
-		APILevel        []int `json:"apiLevel"`
-	} `json:"endpoints"`
+	Manufacturer     *string    `json:"manufacturer"`
+	Model            *string    `json:"model"`
+	SerialNumber     *string    `json:"serialNumber"`
+	FirmwareVerision *string    `json:"firmwareVersion"`
+	SupportURL       *string    `json:"supportUrl"`
+	GPS              *bool      `json:"gps"`
+	Gyro             *bool      `json:"gyro"`
+	Uptime           *int       `json:"uptime"`
+	API              []string   `json:"api"`
+	Endpoints        *Endpoints `json:"endpoints"`
+}
+
+func (i Info) String() string {
+	return Stringify(i)
+}
+
+// Endpoints reprents endpoints of the Theta API server.
+type Endpoints struct {
+	HTTPPort        *int   `json:"httpPort"`
+	HTTPUpdatesPort *int   `json:"httpUpdatesPort"`
+	APILevel        []int `json:"apiLevel"`
+}
+
+func (e Endpoints) String() string {
+	return Stringify(e)
 }
 
 // InfoServices handles communication with the info of connected Theta.

@@ -202,3 +202,7 @@ func Int(v int) *int { return &v } // copied from https://github.com/google/go-g
 // String is a helper routine that allocates a new string value
 // to store v and returns a pointer to it.
 func String(v string) *string { return &v } // copied from https://github.com/google/go-github
+
+// Float64 is a helper routine that allocates a new float64 value
+// to store v and returns a pointer to it.
+func Float64(v float64) *float64 { return &v } // adapted from https://github.com/google/go-github
